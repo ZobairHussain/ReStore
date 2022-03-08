@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
 import ProductList from "./ProductList";
 
@@ -9,9 +10,7 @@ export default function Catalog() {
 
     // empty array as dependency means compile only once
     useEffect(() => {
-        fetch('http://localhost:5000/api/products')
-        .then(Response => Response.json())
-        .then(data => setProducts(data))
+        agent.Catalog.list().then(products => setProducts(products))
     }, [])
 
     return (
