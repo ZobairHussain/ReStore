@@ -33,7 +33,7 @@ export default function counterReducer(state = initialState, action: any) {
             }
         case DECREMENT_COUNTER:
             return {
-                ...state, //... operator creates a new copy of the state
+                ...state,
                 data: state.data - action.payload
             }
         default:
