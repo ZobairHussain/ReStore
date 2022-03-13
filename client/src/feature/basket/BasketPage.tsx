@@ -56,7 +56,7 @@ export default function BasketPage() {
                       <span>{item.name}</span>
                     </Box>
                   </TableCell>
-                    <TableCell align="right">${currencyFormat(item.price)}</TableCell>
+                    <TableCell align="right">{currencyFormat(item.price)}</TableCell>
                     <TableCell align="center">
                       <LoadingButton 
                         loading={status.loading && status.name === 'remove' + item.productId} 
@@ -72,7 +72,7 @@ export default function BasketPage() {
                         <Add />
                       </LoadingButton>
                     </TableCell>
-                    <TableCell align="right">${currencyFormat(item.price * item.quantity)}</TableCell>
+                    <TableCell align="right">{currencyFormat(item.price * item.quantity)}</TableCell>
                     <TableCell align="right">
                     <LoadingButton 
                       loading={status.loading && status.name === 'delete' + item.productId} 
