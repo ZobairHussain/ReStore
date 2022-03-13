@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 export const history = createBrowserHistory();
 
 const store = configureStore();
-console.log(store.getState());
 
 ReactDOM.render(
   <React.StrictMode>
