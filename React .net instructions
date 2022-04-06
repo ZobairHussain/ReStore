@@ -1,0 +1,134 @@
+set environment:
+	download dotnet 6.0: https://dotnet.microsoft.com/en-us/download
+	dotnet --version
+	Download nodejs version:16.13.2 LTS from https://nodejs.org/en/
+	node --version
+	npm --version
+	
+mkdir ReStore
+cd ReStore
+dotnet new -l
+dotnet new sln
+ls or dir
+dotnet new webapi -o API
+dotnet sln add API
+cd ..
+code . (open vs code)
+
+
+vs code extensions:
+1.  Name: C#
+	Id: ms-dotnettools.csharp
+	Description: C# for Visual Studio Code (powered by OmniSharp).
+	Version: 1.24.0
+	Publisher: Microsoft
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
+2.  Name: C# Extensions
+	Id: kreativ-software.csharpextensions
+	Description: C# IDE Extensions for VSCode
+	Version: 1.6.0
+	Publisher: JosKreativ
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions
+3.	Name: Auto Rename Tag
+	Id: formulahendry.auto-rename-tag
+	Description: Auto rename paired HTML/XML tag
+	Version: 0.1.10
+	Publisher: Jun Han
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
+4.	Name: Bracket Pair Colorizer 2
+	Id: coenraads.bracket-pair-colorizer-2
+	Description: A customizable extension for colorizing matching brackets
+	Version: 0.2.2
+	Publisher: CoenraadS
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2
+5.	Name: Material Icon Theme
+	Id: pkief.material-icon-theme
+	Description: Material Design Icons for Visual Studio Code
+	Version: 4.13.0
+	Publisher: Philipp Kief
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+6.	Name: NuGet Gallery
+	Id: patcx.vscode-nuget-gallery
+	Description: NuGet Gallery Extension makes installing and uninstalling NuGet packages easier
+	Version: 0.0.24
+	Publisher: pcislo
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=patcx.vscode-nuget-gallery
+7.	Name: SQLite
+	Id: alexcvzz.vscode-sqlite
+	Description: Explore and query SQLite databases.
+	Version: 0.14.0
+	Publisher: alexcvzz
+	VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite
+	
+
+* setting > exclude
+to hide bin, obj folder from view
+
+in API.csproj bellow features are new in .net6
+<Nullable>enable</Nullable>
+<ImplicitUsings>enable</ImplicitUsings>
+	
+	
+nuget dotnet-ef (google it)
+	dotnet tool install --global dotnet-ef --version 6.0.2
+	
+	for check: dotnet tool list -g
+	if version is mismatched:
+	dotnet tool update --global dotnet-ef --version 6.0.2
+steps: 
+	1. create StoreContext class derived of DbContext
+	2. add services.AddDbContext<StoreContext> at sturtup.cs
+	3. add ConnectionStrings at appsettings.Development.json
+	4. migrations command: dotnet ef migrations add InitialCreate -o Data/Migrations
+	5. dotnet ef database update
+	
+	
+Git:
+	dotnet new -l
+	dotnet new gitignore
+	
+Terminal to see git branches: Oh My ZSH!
+	available at: https://ohmyz.sh/ (I could not add it)
+	
+React:
+	@material-ui/core > @mui/material
+	npx create-react-app client --template typescript --use-npm
+	
+typescript vs javascript: typescript show warnings & crash the web
+but javascript does not show warnings & does not crash, just not working the segment which is wrong.
+ * everything fails silently in javascript, where everything fails noisily in typescript.
+ 
+* normally typescript knows the shape of its structure from the initial value.
+But sometimes, there is no initial value, value will come from api call. In this case, we need to create interface to tell typescript what is the shape of the object.
+
+json to ts => http://json2ts.com/
+some random picture generating url: http://picsum.photoes/200
+
+react file structure: https://reactjs.org/docs/faq-structure.html
+
+files are grouped by feature in react applications
+
+MUI:
+	npm install @mui/material @emotion/react @emotion/styled
+	npm install @mui/icons-material
+	
+	paste this font in index.html
+	<link
+		rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	/>
+	
+add react developer tool extension in chrome
+* CssBaseline removes all the padding & margin supplied by the browser & reset it
+
+
+npm install react-router-dom @types/react-router-dom
+
+* hover effect: 
+	'&:hover': {
+				color: 'secondary.main'
+			}
+* active effect:
+		'&.active': {
+					color: 'text.secondary'
+				}
