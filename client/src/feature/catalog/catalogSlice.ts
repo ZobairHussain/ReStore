@@ -1,4 +1,5 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
 import { RootState } from "../../app/store/configureStore";
@@ -7,22 +8,22 @@ const ProductsAdapter = createEntityAdapter<Product>();
 
 export const fetchProductsAsync = createAsyncThunk<Product[]>(
     'catalog/fetchProductsAsync',
-    async() => {
+    async(_, thunkAPI) => { // _ is a void arg
         try {
             return await agent.Catalog.list();
         } catch (error) {
-            console.log(error);
+            return thunkAPI.rejectWithValue({error: error})
         }
     }
 )
 
 export const fetchProductAsync = createAsyncThunk<Product, number>(
     'catalog/fetchProductAsync',
-    async(productId) => {
+    async(productId, thunkAPI) => {
         try {
             return await agent.Catalog.details(productId);
         } catch (error) {
-            console.log(error);
+            return thunkAPI.rejectWithValue({error: error})
         }
     }
 )
@@ -43,7 +44,8 @@ export const catalogSlice = createSlice({
             state.status = 'idle';
             state.productsLoaded = true;
         });
-        builder.addCase(fetchProductsAsync.rejected, (state) => {
+        builder.addCase(fetchProductsAsync.rejected, (state, action) => {
+            console.log(action);
             state.status = 'idle';
         });
         
@@ -54,7 +56,8 @@ export const catalogSlice = createSlice({
             ProductsAdapter.upsertOne(state, action.payload);
             state.status = 'idle';
         });
-        builder.addCase(fetchProductAsync.rejected, (state) => {
+        builder.addCase(fetchProductAsync.rejected, (state, action) => {
+            console.log(action);
             state.status = 'idle';
         })
     })
