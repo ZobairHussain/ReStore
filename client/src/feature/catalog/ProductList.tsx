@@ -10,7 +10,7 @@ export default function ProductList({products}: Props) {
         // spacing = 1 means 8 pixle
         <Grid container spacing={4}>
             {products.map(product => (
-                <Grid item xs={3} key={product.id}>
+                <Grid item xs={4} key={product.id}>
                     <ProductCart product={product} />
                 </Grid>
             ))}
