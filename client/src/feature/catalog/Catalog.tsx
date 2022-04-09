@@ -31,7 +31,7 @@ export default function Catalog() {
     useEffect(() => {
         if(!filtersLoaded) dispatch(fetchFilters());
     }, [dispatch, filtersLoaded])
-    if(status.includes('pending') || !metaData) return <LoadingComponent message='Loading products...' />
+    if(!filtersLoaded) return <LoadingComponent message='Loading products...' />
 
     return (
         <Grid container columnSpacing={4}>
@@ -66,10 +66,11 @@ export default function Catalog() {
             </Grid>
             <Grid item xs={3} />
             <Grid item xs={9} sx={{mb: 2}} >
+                {metaData && 
                 <AppPagination
                     metaData={metaData}
                     onPageChange={(page: number) => dispatch(setPageNumber({pageNumber: page}))}
-                 />
+                 />}
             </Grid>
         </Grid>
     )

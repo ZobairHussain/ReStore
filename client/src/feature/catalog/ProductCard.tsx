@@ -9,7 +9,7 @@ import { addBasketItemAsync } from "../basket/basketSlice";
 interface Props{
     product: Product
 }
-export default function ProductCart({product}: Props) {
+export default function ProductCard({product}: Props) {
     const {status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
     //const {setBasket} = useStoreContext(); 
