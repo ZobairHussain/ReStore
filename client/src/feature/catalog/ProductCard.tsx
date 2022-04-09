@@ -7,9 +7,9 @@ import { currencyFormat } from "../../app/util/util";
 import { addBasketItemAsync } from "../basket/basketSlice";
 
 interface Props{
-    product: Product;
+    product: Product
 }
-export default function ProductCart({product}: Props) {
+export default function ProductCard({product}: Props) {
     const {status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
     //const {setBasket} = useStoreContext(); 
@@ -28,13 +28,12 @@ export default function ProductCart({product}: Props) {
                 }}
              />
             <CardMedia
-                sx={{backgroundSize: 'contain', bgcolor: 'light'}}
-                component="img"
+                sx={{ height: 140, backgroundSize: 'contain', bgcolor: 'light'}} //bgcolor: 'primary.light'
                 image={product.pictureUrl}
                 title={product.name}
             />
             <CardContent>
-                <Typography gutterBottom color='secondary' variant="h5" component="div">
+                <Typography gutterBottom color='secondary' variant="h5">
                     {currencyFormat(product.price)}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
