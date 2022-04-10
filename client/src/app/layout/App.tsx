@@ -20,6 +20,7 @@ import { useAppDispatch } from "../store/configureStore";
 import { setBasket } from "../../feature/basket/basketSlice";
 import Login from "../../feature/account/Login";
 import Register from "../../feature/account/Register";
+import ForgetPassword from "../../feature/account/ForgetPassword";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -70,6 +71,7 @@ function App() {
           <Route path='/checkout' component={CheckoutPage} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
+          <Route path='/forgetPassword' component={ForgetPassword} />
           <Route component={NotFound} />
         </Switch>
 
