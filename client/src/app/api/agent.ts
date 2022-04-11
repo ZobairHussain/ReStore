@@ -13,12 +13,10 @@ const responseBody = (response: AxiosResponse) => response.data;
 
 axios.interceptors.request.use(config => {
     const token = store.getState().account.user?.token;
-    console.log(token);
     if (config.headers === undefined) {
         config.headers = {};
     }
     if(token) config.headers.Authorization = `Bearer ${token}`;
-    console.log(config);
     return config;
 })
 
