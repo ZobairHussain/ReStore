@@ -1,5 +1,5 @@
 import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import AboutPage from "../../feature/about/AboutPage";
@@ -12,28 +12,32 @@ import 'react-toastify/dist/ReactToastify.css';
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../feature/basket/BasketPage";
-import { getCookie } from "../util/util";
-import agent from "../api/agent";
 import LoadingComponent from "./LoadingComponent";
 import CheckoutPage from "../../feature/checkout/CheckoutPage";
 import { useAppDispatch } from "../store/configureStore";
-import { setBasket } from "../../feature/basket/basketSlice";
+import { fetchBasketAsync } from "../../feature/basket/basketSlice";
+import Login from "../../feature/account/Login";
+import Register from "../../feature/account/Register";
+import ForgetPassword from "../../feature/account/ForgetPassword";
+import { fetchCurrentUser } from "../../feature/account/accountSlice";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const buyerId = getCookie('BuyerId');
-    if(buyerId) {
-      agent.Basket.get()
-      .then(basket => dispatch(setBasket(basket)))
-      .catch(error => console.log(error))
-      .finally(() => setLoading(false))
-    } else{
-      setLoading(false);
+  const initApp = useCallback(async () => {
+    try {
+      await dispatch(fetchCurrentUser());
+      await dispatch(fetchBasketAsync());
+    } catch (error) {
+      console.log(error)
     }
   }, [dispatch])
+
+  useEffect(() => {
+    initApp().then(() => setLoading(false));
+  }, [initApp])
 
   const [darkMode, setDarkMode] = useState(false);
   const paletteType = darkMode ? 'dark' : 'light';
@@ -65,7 +69,10 @@ function App() {
           <Route path='/contact' component={ContactPage} />
           <Route path='/server-error' component={ServerError} />
           <Route path='/basket' component={BasketPage} />
-          <Route path='/checkout' component={CheckoutPage} />
+          <PrivateRoute path='/checkout' component={CheckoutPage} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+          <Route path='/forgetPassword' component={ForgetPassword} />
           <Route component={NotFound} />
         </Switch>
 
