@@ -23,8 +23,13 @@ export default function Login() {
     });
 
     async function submitForm(data: FieldValues) {
-        await dispatch(SignInUser(data));
-        history.push('/catalog');
+        try {
+            await dispatch(SignInUser(data));
+            history.push('/catalog');
+        } catch (error) {
+            console.log(error);
+        }
+
     }
     return (
     <ThemeProvider theme={theme}>
