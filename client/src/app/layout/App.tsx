@@ -20,6 +20,7 @@ import Login from "../../feature/account/Login";
 import Register from "../../feature/account/Register";
 import ForgetPassword from "../../feature/account/ForgetPassword";
 import { fetchCurrentUser } from "../../feature/account/accountSlice";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -68,7 +69,7 @@ function App() {
           <Route path='/contact' component={ContactPage} />
           <Route path='/server-error' component={ServerError} />
           <Route path='/basket' component={BasketPage} />
-          <Route path='/checkout' component={CheckoutPage} />
+          <PrivateRoute path='/checkout' component={CheckoutPage} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/forgetPassword' component={ForgetPassword} />
