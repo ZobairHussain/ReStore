@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Middleware;
 using API.Entities;
-using Microsoft.AspNetCore.Identity;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Collections.Generic;
+using API.Entities.OrderAggregate;
 
 namespace API
 {
@@ -69,7 +69,7 @@ namespace API
             services.AddIdentityCore<User>(opt => {
                 opt.User.RequireUniqueEmail = true;
             })
-                .AddRoles<IdentityRole>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<StoreContext>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt => {
