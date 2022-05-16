@@ -458,4 +458,4 @@ API/appsettings.json
 ## database
 API/store.db-shm
 API/store.db-wal
-*.db
+API/store.db
