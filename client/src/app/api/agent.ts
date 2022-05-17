@@ -102,7 +102,7 @@ const Orders = {
 }
 
 const Payments = {
-    createPaymentIntent: () => requests.post('payments', {})
+    createPaymentIntent: () => requests.post('Payment', {})
 }
 
 const agent = {
