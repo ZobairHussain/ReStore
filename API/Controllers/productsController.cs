@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class productsController : BaseAoiController
+    public class productsController : BaseApiController
     {
         private readonly StoreContext _context;
         public productsController(StoreContext context)

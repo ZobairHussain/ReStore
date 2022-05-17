@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class AccountController : BaseAoiController
+    public class AccountController : BaseApiController
     {
         private readonly UserManager<User> _userManager;
         private readonly TokenService _tokenService;

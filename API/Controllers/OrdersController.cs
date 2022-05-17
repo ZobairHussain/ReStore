@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers
 {
     [Authorize]
-    public class OrdersController : BaseAoiController
+    public class OrdersController : BaseApiController
     {
         private readonly StoreContext _context;
         public OrdersController(StoreContext context)
@@ -78,7 +78,8 @@ namespace API.Controllers
                 BuyerId = User.Identity.Name,
                 ShippingAddress = orderDto.ShippingAddress,
                 SubTotal = subtotal,
-                DelivaryFee = delivaryFee
+                DelivaryFee = delivaryFee,
+                PaymentIntentId = basket.PaymentIntentId
             };
 
             _context.Orders.Add(order);

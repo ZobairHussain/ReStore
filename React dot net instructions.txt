@@ -132,3 +132,69 @@ npm install react-router-dom @types/react-router-dom
 		'&.active': {
 					color: 'text.secondary'
 				}
+
+npm install axios
+Axios: Axios is a promise based HTTP client for the browser and Node. js. Axios makes it easy to send asynchronous HTTP requests to REST endpoints and perform CRUD operations.
+
+npm install react-toastify
+
+
+DB
+	dotnet ef migrations add BasketEntityAdded
+	dotnet ef migrations remove
+	
+MUI Lab
+	npm install @mui/lab
+	
+REDUX
+	npm install redux react-redux
+	npm install @reduxjs/toolkit
+	
+Identity from ASP .netCore
+
+install 2 nuget packages
+	Microsoft.AspNetCore.Authentication.JwtBearer
+	Microsoft.AspNetCore.Identity.EntityFrameworkCore
+	
+	* Call db migration
+		dotnet ef migrations add IdentityAdded
+		
+Login
+	npm install react-hook-form
+	
+DB
+	dotnet ef database drop
+	dotnet ef migrations add OrderEntityAdded
+	
+Schema Validation of react hook form
+	npm install @hookform/resolvers yup
+	
+PCIDSS Payment card industry data security Standards
+	
+	Set of Industry Standards
+	Designed to protect payment card data
+	Increased protection for customers & reduced risk of data breaches involving personal card data
+	
+PCI Complaience
+	
+	
+dotnet ef migratios add PaymentIntentAdded
+
+Stripe
+	npm install --save @stripe/react-stripe-js @stripe/stripe-js
+
+Stipe testing links
+	https://dashboard.stripe.com/test/payments
+	https://stripe.com/docs/testing
+
+Testing webhook in localhost is not possible, so we need to use Stripe CLI to test webhook
+	Stripe CLI link: https://stripe.com/docs/stripe-cli
+
+Stripe CLI commands:
+	stripe login
+	stripe listen
+	stripe listen -f http://localhost:5000/api/payments/webhook -e charge.succeeded
+
+Safe storage of app secrets in development in ASP.NET Core
+	link: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows
+Secret storage is Hardware dependent. ANd I am implementing this website by two machine, so i skiped User secret 181 course.
