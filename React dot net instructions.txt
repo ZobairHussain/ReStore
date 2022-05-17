@@ -194,3 +194,7 @@ Stripe CLI commands:
 	stripe login
 	stripe listen
 	stripe listen -f http://localhost:5000/api/payments/webhook -e charge.succeeded
+
+Safe storage of app secrets in development in ASP.NET Core
+	link: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows
+Secret storage is Hardware dependent. ANd I am implementing this website by two machine, so i skiped User secret 181 course.
