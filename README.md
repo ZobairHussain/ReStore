@@ -3,11 +3,15 @@ This is an E-commerce website (a real world application) using some of the most 
 
 ### Following features are being used here
 
-- .Net for the back end code
-- React for the client app or front-end
-- Redux for client side state management
-- Material UI styling framework for React
-- TypeScript language
-- C# language
-- Entity Framework
-- ASPNETCore Identity for authentication
+- A **.Net WebAPI application** was created using the dot net CLI
+- **React** is used for the client app or front-end
+- **Redux** is used for client side state management
+- **Material UI** styling framework is used for a great looking UI
+- **TypeScript** language is used
+- **Entity Framework** is used for queries & update database
+- **ASP.NET Identity** is used for authentication, login & registration
+- **Reusable form component** was included using **React hook form**
+- Pagging, sorting, searching & filtering functions were added
+- Orders were created using **Shopping Basket**
+- Accepting payments was included via **Stripe** using the new **EU standards for 3D secure**
+
