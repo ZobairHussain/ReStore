@@ -66,7 +66,7 @@ namespace API
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-                string connStr;
+                string connStr = string.Empty;
 
                 if (env == "Development")
                 {
