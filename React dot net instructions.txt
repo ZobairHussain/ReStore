@@ -222,3 +222,5 @@ Commands:
 	dotnet ef migrations add PostGresInitial -o Data/Migrations
 
 Install PostgreSQL vscode extensions by Chris Kolkman
+
+install heroku CLI
