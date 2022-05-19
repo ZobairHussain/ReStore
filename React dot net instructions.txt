@@ -193,8 +193,34 @@ Testing webhook in localhost is not possible, so we need to use Stripe CLI to te
 Stripe CLI commands:
 	stripe login
 	stripe listen
-	stripe listen -f http://localhost:5000/api/payments/webhook -e charge.succeeded
+	stripe listen -f http://localhost:5000/api/Payment/webhook -e charge.succeeded
 
 Safe storage of app secrets in development in ASP.NET Core
 	link: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows
-Secret storage is Hardware dependent. ANd I am implementing this website by two machine, so i skiped User secret 181 course.
+Commands:
+	dotnet user-secrets init
+	dotnet user-secrets set "Movies:ServiceApiKey" "12345"
+	dotnet user-secrets list
+
+React slick for homepage Design
+	npm install react-slick @types/react-slick slick-carousel
+
+In production version
+	npm run build
+
+Database Provider: which databases we can use to production build
+	https://docs.microsoft.com/en-us/ef/core/providers/?tabs=dotnet-core-cli
+
+	we are using PostgreSQL: https://www.postgresql.org/
+
+install docker
+	docker run --name dev -e POSTGRES_USER=appuser -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres:latest
+
+install Npgsql.EntityFrameworkCore.PostgreSQL at nuget
+Commands:
+	dotnet tool install --global dotnet-ef
+	dotnet ef migrations add PostGresInitial -o Data/Migrations
+
+Install PostgreSQL vscode extensions by Chris Kolkman
+
+install heroku CLI

@@ -55,30 +55,32 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  if(loading) return <LoadingComponent message='Initializing app...' />
+  if (loading) return <LoadingComponent message='Initializing app...' />
   return (
-    <ThemeProvider theme={theme}> 
+    <ThemeProvider theme={theme}>
       <ToastContainer theme='colored' position='bottom-right' hideProgressBar />
       <CssBaseline />
       <Header darkMode={darkMode} handleThemeChanged={handleThemeChanged} />
-      <Container>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/catalog' component={Catalog} />
-          <Route path='/catalog/:id' component={ProductDetails} />
-          <Route path='/about' component={AboutPage} />
-          <Route path='/contact' component={ContactPage} />
-          <Route path='/server-error' component={ServerError} />
-          <Route path='/basket' component={BasketPage} />
-          <PrivateRoute path='/checkout' component={CheckoutWrapper} />
-          <PrivateRoute path='/orders' component={Orders} />
-          <Route path='/login' component={Login} />
-          <Route path='/register' component={Register} />
-          <Route path='/forgetPassword' component={ForgetPassword} />
-          <Route component={NotFound} />
-        </Switch>
-
-      </Container>
+      <Route exact path='/' component={HomePage} />
+      {/* reach router can take regular expression as route. */}
+      <Route path={'/(.+)'} render={() => (  
+        <Container  sx={{mt: 4}}>
+          <Switch>
+            <Route exact path='/catalog' component={Catalog} />
+            <Route path='/catalog/:id' component={ProductDetails} />
+            <Route path='/about' component={AboutPage} />
+            <Route path='/contact' component={ContactPage} />
+            <Route path='/server-error' component={ServerError} />
+            <Route path='/basket' component={BasketPage} />
+            <PrivateRoute path='/checkout' component={CheckoutWrapper} />
+            <PrivateRoute path='/orders' component={Orders} />
+            <Route path='/login' component={Login} />
+            <Route path='/register' component={Register} />
+            <Route path='/forgetPassword' component={ForgetPassword} />
+            <Route component={NotFound} />
+          </Switch>
+        </Container>
+      )} />
     </ThemeProvider>
   );
 }
