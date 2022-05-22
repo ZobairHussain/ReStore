@@ -67,6 +67,7 @@ namespace API
                 
                 string connStr;
                 
+
                 if (env == "Development")
                 {
                     // Use connection string from file.
@@ -95,17 +96,23 @@ namespace API
                 // or from the environment variable from Heroku, use it to set up your DbContext.
                 options.UseNpgsql(connStr);
             });
+<<<<<<< HEAD
 
 
 
+=======
+            
+>>>>>>> 083b1b1587db02ef5ec02e2f8b7c8dffca7f3982
             services.AddCors();
-            services.AddIdentityCore<User>(opt => {
+            services.AddIdentityCore<User>(opt =>
+            {
                 opt.User.RequireUniqueEmail = true;
             }).AddRoles<Role>()
             .AddEntityFrameworkStores<StoreContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opt => {
+                .AddJwtBearer(opt =>
+                {
                     opt.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = false, // issuer is the API, http://localhost:5000
@@ -142,7 +149,8 @@ namespace API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseCors(opt =>{
+            app.UseCors(opt =>
+            {
                 opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
             });
 
