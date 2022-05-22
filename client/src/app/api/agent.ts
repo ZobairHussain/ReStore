@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true; //browser will receive & set cookie insid
 
 const responseBody = (response: AxiosResponse) => response.data;
 
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use(config => { 
     const token = store.getState().account.user?.token;
     if (config.headers === undefined) {
         config.headers = {};
