@@ -224,3 +224,7 @@ Commands:
 Install PostgreSQL vscode extensions by Chris Kolkman
 
 install heroku CLI
+	at restore directory: heroku login
+
+Set buildPack:
+	heroku buildpacks:set jincod/dotnetcore

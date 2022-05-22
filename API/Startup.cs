@@ -30,7 +30,6 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -61,12 +60,13 @@ namespace API
                     }
                 });
             });
-
+            
             services.AddDbContext<StoreContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-                string connStr = string.Empty;
+                
+                string connStr;
+                
 
                 if (env == "Development")
                 {
@@ -96,14 +96,20 @@ namespace API
                 // or from the environment variable from Heroku, use it to set up your DbContext.
                 options.UseNpgsql(connStr);
             });
+<<<<<<< HEAD
+
+
+
+=======
             
+>>>>>>> 083b1b1587db02ef5ec02e2f8b7c8dffca7f3982
             services.AddCors();
             services.AddIdentityCore<User>(opt =>
             {
                 opt.User.RequireUniqueEmail = true;
-            })
-                .AddRoles<Role>()
-                .AddEntityFrameworkStores<StoreContext>();
+            }).AddRoles<Role>()
+            .AddEntityFrameworkStores<StoreContext>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
                 {
@@ -126,6 +132,7 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             app.UseMiddleware<ExceptionMiddleware>();
 
             if (env.IsDevelopment())
