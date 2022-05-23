@@ -228,3 +228,5 @@ install heroku CLI
 
 Set buildPack:
 	heroku buildpacks:set jincod/dotnetcore
+
+push to heroku
