@@ -1,22 +1,27 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.RequestHelpers;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
+using Product = API.Entities.Product;
 
 namespace API.Controllers
 {
     public class productsController : BaseApiController
     {
         private readonly StoreContext _context;
-        public productsController(StoreContext context)
+        private readonly IMapper _mapper;
+        public productsController(StoreContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
@@ -34,7 +39,7 @@ namespace API.Controllers
             return products;
         }
 
-        [HttpGet("{id}")] //api/products/3 
+        [HttpGet("{id}", Name = "GetProduct")] //api/products/3 
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product =  await _context.Products.FindAsync(id);
@@ -49,6 +54,19 @@ namespace API.Controllers
             var types = await _context.Products.Select(p => p.Type).Distinct().ToListAsync();
 
             return Ok(new {brands, types});
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<ActionResult<Product>> CreateProduct(CreateProductDto productDto)
+        {
+            var product = _mapper.Map<Product>(productDto);
+            _context.Products.Add(product);
+
+            var result = await _context.SaveChangesAsync() > 0;
+            if(result) return CreatedAtRoute("GetProduct", new {Id = product.Id}, product);
+
+            return BadRequest(new ProblemDetails{ Title = "Problem Creating new product"});
         }
 
     }

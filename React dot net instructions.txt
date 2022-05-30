@@ -230,3 +230,7 @@ Set buildPack:
 	heroku buildpacks:set jincod/dotnetcore
 
 push to herokku
+
+install
+AutoMapper.Extensions.Microsoft.DependencyInjection
+by 	Jimmy Bogard

@@ -15,6 +15,7 @@ using System.Text;
 using System.Collections.Generic;
 using API.Entities.OrderAggregate;
 using System;
+using API.RequestHelpers;
 
 namespace API
 {
@@ -31,6 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" }); //provides documentations for API
