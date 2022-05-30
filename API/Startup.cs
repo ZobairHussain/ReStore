@@ -64,9 +64,7 @@ namespace API
             services.AddDbContext<StoreContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                
-                string connStr;
-                
+                string connStr = "";
 
                 if (env == "Development")
                 {
@@ -96,13 +94,6 @@ namespace API
                 // or from the environment variable from Heroku, use it to set up your DbContext.
                 options.UseNpgsql(connStr);
             });
-<<<<<<< HEAD
-
-
-
-=======
-            
->>>>>>> 083b1b1587db02ef5ec02e2f8b7c8dffca7f3982
             services.AddCors();
             services.AddIdentityCore<User>(opt =>
             {
