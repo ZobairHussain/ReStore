@@ -64,9 +64,7 @@ namespace API
             services.AddDbContext<StoreContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                
-                string connStr;
-                
+                string connStr = "";
 
                 if (env == "Development")
                 {
