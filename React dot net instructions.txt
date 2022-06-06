@@ -246,5 +246,10 @@ dotnet ef migrations add PublicIdAdded
 install dropzone
 	npm install --save react-dropzone
 
-Experiment
+
+
+
+
+
+Experiment (At the end)
 	npm audit fix
