@@ -242,3 +242,9 @@ Add cloudinary (CloudName, ApiKey, ApiSecret) to your User Secrets
 install Nuget: CloudinaryDotNet by Cloudinary
 
 dotnet ef migrations add PublicIdAdded
+
+install dropzone
+	npm install --save react-dropzone
+
+Experiment
+	npm audit fix
