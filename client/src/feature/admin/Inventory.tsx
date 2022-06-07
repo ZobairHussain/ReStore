@@ -4,20 +4,33 @@ import { currencyFormat } from "../../app/util/util";
 import useProducts from "../../app/hooks/useProducts";
 import AppPagination from "../../app/components/AppPagination";
 import { useAppDispatch } from "../../app/store/configureStore";
-import { setPageNumber } from "../catalog/catalogSlice";
+import { removeProduct, setPageNumber } from "../catalog/catalogSlice";
 import ProductForm from "./ProductForm";
 import { useState } from "react";
 import { Product } from "../../app/models/product";
+import agent from "../../app/api/agent";
+import { LoadingButton } from "@mui/lab";
 
 export default function Inventory() {
     const {products, metaData} = useProducts();
     const dispatch = useAppDispatch();
     const [editMode, setEditMode] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(undefined);
+    const [loading, setLoading] = useState(false);
+    const [target, setTarget] = useState(0);
 
     function handleSelectedProduct(product: Product) {
         setSelectedProduct(product);
         setEditMode(true);
+    }
+
+    function handleDeleteProduct(id: number){
+        setLoading(true);
+        setTarget(id);
+        agent.Admin.deleteProduct(id)
+        .then(() => dispatch(removeProduct(id)))
+        .catch(error => console.log(error))
+        .finally(() => setLoading(false));
     }
 
     function cancelEdit() {
@@ -67,7 +80,11 @@ export default function Inventory() {
                                 <TableCell align="center">{product.quantityInStock}</TableCell>
                                 <TableCell align="right">
                                     <Button onClick={() => handleSelectedProduct(product)} startIcon={<Edit />} />
-                                    <Button startIcon={<Delete />} color='error' />
+                                    <LoadingButton 
+                                        loading={loading && target === product.id} 
+                                        startIcon={<Delete />} color='error' 
+                                        onClick={() => handleDeleteProduct(product.id)}
+                                        />
                                 </TableCell>
                             </TableRow>
                         ))}
