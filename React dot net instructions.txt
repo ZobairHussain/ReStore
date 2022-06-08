@@ -230,3 +230,26 @@ Set buildPack:
 	heroku buildpacks:set jincod/dotnetcore
 
 push to herokku
+
+install
+AutoMapper.Extensions.Microsoft.DependencyInjection
+by 	Jimmy Bogard
+
+update product API is not working
+
+Add cloudinary (CloudName, ApiKey, ApiSecret) to your User Secrets
+
+install Nuget: CloudinaryDotNet by Cloudinary
+
+dotnet ef migrations add PublicIdAdded
+
+install dropzone
+	npm install --save react-dropzone
+
+
+
+
+
+
+Experiment (At the end)
+	npm audit fix

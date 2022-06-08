@@ -15,6 +15,7 @@ using System.Text;
 using System.Collections.Generic;
 using API.Entities.OrderAggregate;
 using System;
+using API.RequestHelpers;
 
 namespace API
 {
@@ -31,6 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" }); //provides documentations for API
@@ -118,6 +120,7 @@ namespace API
             services.AddAuthorization();
             services.AddScoped<TokenService>();
             services.AddScoped<PaymentService>();
+            services.AddScoped<ImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
